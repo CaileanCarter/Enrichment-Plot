@@ -2,15 +2,14 @@
 
 # Plot a Cluster Map of gene sets from Roary and BioCyc's SmartTable of Enriched Pathways.
 import argparse
-import re
 import glob
-
+import re
 from os import path
 
-import seaborn as sns 
-import matplotlib.pyplot as plt 
-import pandas as pd
+import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
+import seaborn as sns
 
 parser = argparse.ArgumentParser()
 
@@ -26,9 +25,6 @@ parser.add_argument("--score", type=float, metavar="0 <= score <= 1", default=1,
 
 parser.add_argument("--output", type=str, metavar=r"\file\path\filename.xslx", help="Output pathway frequency to an Excel file")
 
-# args = parser.parse_args([r"C:\Users\carterc\OneDrive - Norwich BioScience Institutes\Data\RoaryResults\GenePresenceAbsence.txt", "-s", r"C:\Users\carterc\OneDrive - Norwich BioScience Institutes\Data\RoaryResults\BioCyc_SmartTables", '-a'])
-# args = parser.parse_args([r"C:\Users\carterc\OneDrive - Norwich BioScience Institutes\Data\RoaryResults\GenePresenceAbsence.txt"])
-
 args = parser.parse_args()
 
 
@@ -40,6 +36,7 @@ def open_roary(RoaryData):
     GPAfilter = generate_clean_gene_set(GPA)
 
     return GPAfilter, GPA.columns
+
 
 def generate_clean_gene_set(GPA):
     GPA_filter = {}
@@ -53,16 +50,19 @@ def generate_clean_gene_set(GPA):
 
     return GPA_filter
 
+
 def output_clean_gene_set(GPA_filter):
     with open(path.join(f"{relpath}" + "roarygenes.txt"), "w") as output:
         for geneID in GPA_filter.keys():
             output.write(geneID + "\n")
     print(f"Common genes outputted to: \n{relpath}\\roarygenes.txt")
 
+
 def PlotAll(df):
     sns.clustermap(df, cmap="mako")                                           # Plot results
     print("Done.")
     plt.show()
+
 
 def PlotAccessories(df, cutoff):
     accessory = df[df.sum(axis=1) < cutoff]
@@ -70,11 +70,13 @@ def PlotAccessories(df, cutoff):
     print("Done")
     plt.show()
 
+
 def PrintCore(df, cutoff):
     core = df[df.sum(axis=1) >= cutoff]
     print("Core pathways:")
     for pathway in core.index:
         print(pathway)
+
 
 def Single_enrichment_file(filepath):
     enrichment = pd.read_table(filepath, index_col=0)                         # Load BioCyc's SmartTable Enrichment table
@@ -85,9 +87,9 @@ def Single_enrichment_file(filepath):
     filtered_dict = {Pathway : [gene for gene in genes.values() if gene] 
         for Pathway, genes in enrichdict.items()}                             # Remove all empty data (Pandas has no way to remove empty sets during conversion)
 
-    enrichdict.clear()                                                        # Clear enrichdict to save memory
     print("File OKAY.")
     return filtered_dict
+
 
 def Multi_enrichment_files(folder):
     sharedpath = rf"{folder}\**\\"
@@ -159,6 +161,7 @@ def Main(RoaryData, EnrichmentData, accessories=False, core=False, score=1, outp
         print("Plotting all pathways..")
         PlotAll(PathwayTable)
     
+
 if __name__ == "__main__":
 
     if not args.SmartTable:
