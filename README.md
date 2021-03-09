@@ -16,6 +16,6 @@ Short flag | Long flag | Argument | Description
 `-s` | `--SmartTable` | file path | File or folder path for SmartTables generated from Roary data for organism databases of your choice
 `-a` | `--accessory` | bool | Show accessory pathways only
 `-c` | `--core` | bool | Print core pathways
- | `--score` | float |Assign cutoff score for whether a pathway or core of accessory
- | `--output` | str|  Output pathway frequency to an Excel file
+ | | `--score` | float |Assign cutoff score for whether a pathway or core of accessory
+ | | `--output` | str|  Output pathway frequency to an Excel file
  
