@@ -1,3 +1,5 @@
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/CaileanCarter/Pathway-Mapper.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/CaileanCarter/Pathway-Mapper/alerts/)
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/CaileanCarter/Pathway-Mapper.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/CaileanCarter/Pathway-Mapper/context:python)
 # Enrichment Plot
 
 Plot metabolic pathway presence/absence from Roary and BioCyc enrichment table data. 
