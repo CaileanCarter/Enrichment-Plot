@@ -12,7 +12,7 @@ Roary allows for fast analysis of genes present and absent in a collection of pr
 
 Short flag | Long flag | Argument | Description
 --- | --- | --- | --- 
- | | Roary file path| File path for Roary gene presence/absence data
+ | | | Roary file path| File path for Roary gene presence/absence data (positional argument)
 `-s` | `--SmartTable` | file path | File or folder path for SmartTables generated from Roary data for organism databases of your choice
 `-a` | `--accessory` | bool | Show accessory pathways only
 `-c` | `--core` | bool | Print core pathways
