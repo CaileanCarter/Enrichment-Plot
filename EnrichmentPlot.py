@@ -133,7 +133,7 @@ def Main(RoaryData, EnrichmentData, accessories=False, core=False, score=1, outp
         for gene in genes:
             try:
                 gene_presence_absence = condensedGPA.loc[gene]                        # Pull gene presence/absence from Roary data
-            except ValueError:
+            except KeyError:
                 continue
 
             for isolateID, occur in gene_presence_absence.to_dict().items():
